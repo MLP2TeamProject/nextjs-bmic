@@ -2,7 +2,7 @@ import { useState, useContext } from 'react';
 import UserContext from '../../store/UserContext';
 import Link from 'next/link';
 
-const Header = () => {
+const BSHeader = () => {
   const [searchClassName, setSearchClassName] = useState('search_input d-none');
 
   const context = useContext(UserContext);
@@ -120,4 +120,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default BSHeader;

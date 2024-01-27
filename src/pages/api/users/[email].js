@@ -1,5 +1,7 @@
 // pages/api/user/[email].js
 
+import userDAO from './dao';
+
 export default async function handler(req, res) {
   if (req.method === 'GET') {
     const { email } = req.query;

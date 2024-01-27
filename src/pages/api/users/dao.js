@@ -1,5 +1,5 @@
-const bcrypt = require('bcrypt');
-const getPool = require('../common/pool');
+import bcrypt from 'bcrypt';
+import { getPool } from '../common/pool.js';
 
 const sql = {
   // sql구문
@@ -245,4 +245,4 @@ const userDAO = {
   },
 };
 
-module.exports = userDAO;
+export default userDAO;
