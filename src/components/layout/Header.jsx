@@ -1,6 +1,7 @@
 import { useState, useContext } from 'react';
 import UserContext from '../../store/UserContext';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Header = () => {
   const [searchClassName, setSearchClassName] = useState('search_input d-none');
@@ -15,7 +16,7 @@ const Header = () => {
             <nav className="navbar navbar-expand-lg navbar-light">
               <Link className="navbar-brand" href={'/'}>
                 {' '}
-                <img src="img/logo.png" alt="logo" />{' '}
+                <Image src="/img/logo.png" alt="logo" width={116} height={23} />{' '}
               </Link>
               <button
                 className="navbar-toggler"

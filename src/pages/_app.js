@@ -11,12 +11,14 @@ import '../assets/css/themify-icons.css';
 import '../assets/css/magnific-popup.css';
 import '../assets/css/slick.css';
 import '../assets/css/style.css';
+// custom css
+import '../components/mypage/mypage.css';
 
 export default function App({ Component, pageProps }) {
   return (
     <>
       <Header />
-      <Component {...pageProps} />;
+      <Component {...pageProps} />
       <Footer />
     </>
   );

@@ -2,6 +2,7 @@ import { useCallback, useState, useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../../../store/UserContext';
 import { useRouter } from 'next/router';
+import MypageHeader from '../../../components/mypage/component/MypageHeader';
 
 const MyInfo = () => {
   const router = useRouter();
@@ -72,7 +73,7 @@ const MyInfo = () => {
           context.action.loginUser({ email: '', user_name: '' });
           sessionStorage.removeItem('email');
           sessionStorage.removeItem('user_name');
-          navigate('/');
+          router.push('/');
         }
       }
     }
@@ -80,6 +81,7 @@ const MyInfo = () => {
 
   return (
     <>
+      <MypageHeader />
       <section className="cart_area mt-5">
         <div className="container">
           <div className="col-lg-6 col-md-6">

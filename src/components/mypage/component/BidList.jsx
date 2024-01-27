@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, useCallback } from 'react';
-// import { useNavigate } from 'react-router'
-import { Link } from 'react-router-dom';
+// import { useNavigate } from 'react-router' ==> useRouter를 씀
+// import { Link } from 'react-router-dom';
+import Link from 'next/link';
 import axios from 'axios';
 import UserContext from '../../../store/UserContext';
 
@@ -9,14 +10,14 @@ const BidList = () => {
   const context = useContext(UserContext);
 
   // 회원정보 get
-  const userEmail = context.state.userData.email;
-  const imgUrl = 'http://localhost:8000/static/';
+  const userEmail = context?.state.userData.email;
+  const imgUrl = '/api/static/';
 
   // 구매등록 상품 상태
   const [data, setData] = useState([{}]);
   // 구매등록 상품정보 get
   const showInfo = useCallback(async () => {
-    const resp = await axios.get('http://localhost:8000/product/' + userEmail);
+    const resp = await axios.get('/api/product/' + userEmail);
     if (resp.data.status === 500) window.alert(resp.data.message);
     else {
       console.log('구매등록상품', resp.data.data);
@@ -36,7 +37,7 @@ const BidList = () => {
   const [bidList, setBidList] = useState([]);
   // 내가 입찰한 상품정보 get
   const showBidd = useCallback(async () => {
-    const resp = await axios.get('http://localhost:8000/auction/' + userEmail);
+    const resp = await axios.get('/api/auction/' + userEmail);
     if (resp.data.status === 500) window.alert(resp.data.message);
     else {
       console.log('나의 입찰정보', resp.data.data);
@@ -75,7 +76,7 @@ const BidList = () => {
       `${selectedData.selectedAucEmail}님 ${selectedData.selectedAucPrice}으로 낙찰하시겠습니까?`
     );
     if (confirmOK) {
-      const resp = await axios.post('http://localhost:8000/product/selectbid', {
+      const resp = await axios.post('/api/product/selectbid', {
         pId: product_id,
         selectedAucId: selectedData.selectedAucId,
       });
@@ -130,12 +131,12 @@ const BidList = () => {
                           <td>
                             <div className="media">
                               <div className="media-body">
-                                <Link to={'/product/' + item.product_id}>{item.title}</Link>
+                                <Link href={'/product/' + item.product_id}>{item.title}</Link>
                               </div>
                             </div>
                           </td>
                           <td>
-                            <ul className="list">
+                            <ul className="bidList_list">
                               {item.auction_info ? (
                                 <>
                                   {item.auction_info.map((subitem, index) => (
@@ -149,7 +150,7 @@ const BidList = () => {
                                       />{' '}
                                       <img
                                         src={imgUrl + subitem.split(',')[3]}
-                                        className="img_size"
+                                        className="bidList_img_size"
                                         alt=""
                                       />{' '}
                                       입찰번호:{' '}
@@ -157,7 +158,7 @@ const BidList = () => {
                                         {subitem.split(',')[0]}, {subitem.split(',')[1]},{' '}
                                         {subitem.split(',')[2]}원
                                       </label>{' '}
-                                      <span className="text_select_auc">
+                                      <span className="bidList_text_select_auc">
                                         {item.auction_id === Number(subitem.split(',')[0])
                                           ? '✔ 낙찰'
                                           : ''}
@@ -227,10 +228,10 @@ const BidList = () => {
                           <td>
                             <div className="media">
                               <div className="d-flex">
-                                <img src={imgUrl + item.picture} className="img_size" alt="" />
+                                <img src={imgUrl + item.picture} className="bidList_img_size" alt="" />
                               </div>
                               <div className="media-body">
-                                <Link to={'/product/' + item.product_id}>{item.title}</Link>
+                                <Link href={'/product/' + item.product_id}>{item.title}</Link>
                               </div>
                             </div>
                           </td>
