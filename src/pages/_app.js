@@ -1,5 +1,6 @@
-import Footer from '../components/layout/Footer';
-import Header from '../components/layout/Header';
+import { ConfigProvider } from 'antd';
+import LayoutProvider from '../components/layout/Layout';
+import 'antd/dist/reset.css';
 
 //bootstrap template...........................
 import '../assets/css/bootstrap.min.css';
@@ -17,9 +18,11 @@ import '../components/mypage/mypage.css';
 export default function App({ Component, pageProps }) {
   return (
     <>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <ConfigProvider>
+        <LayoutProvider>
+          <Component {...pageProps} />
+        </LayoutProvider>
+      </ConfigProvider>
     </>
   );
 }
