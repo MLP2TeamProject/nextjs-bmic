@@ -39,7 +39,7 @@ const MyInfo = () => {
       e.preventDefault();
       // console.log(data)
       if (data.changePw === data.changePwConfirm) {
-        const resp = await axios.post('http://localhost:8000/users/changePw/', {
+        const resp = await axios.post('/api/users/changePw/', {
           email: data.email,
           originPw: data.originPw,
           changePw: data.changePw,
@@ -60,7 +60,7 @@ const MyInfo = () => {
   const deleteAccout = useCallback(async () => {
     const answer = window.confirm('정말로 탈퇴하시겠습니까?');
     if (answer) {
-      const resp = await axios.post('http://localhost:8000/users/deleteAccount', {
+      const resp = await axios.post('/api/users/deleteAccount', {
         email: userEmail,
       });
       if (resp.data.status === 500) window.alert(resp.data.message);
