@@ -72,7 +72,7 @@ const UserMain = () => {
       context?.action.loginUser({ email: '', user_name: '' });
       sessionStorage.removeItem('email');
       sessionStorage.removeItem('user_name');
-      navigate('/');
+      router.push('/');
     }
   };
 

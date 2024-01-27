@@ -1,8 +1,10 @@
 import { useCallback, useState, useContext } from 'react';
 import axios from 'axios';
 import UserContext from '../../../store/UserContext';
+import { useRouter } from 'next/router';
 
 const MyInfo = () => {
+  const router = useRouter();
   // context에 공개된 상태,함수를 이용하겠다면 useContext를 이용
   const context = useContext(UserContext);
 
@@ -46,8 +48,8 @@ const MyInfo = () => {
         });
         if (resp.data.status === 500) window.alert(resp.data.message);
         else {
-          window.alert(resp.data.message);
-          navigate('/login');
+          alert(resp.data.message);
+          router.push('/');
         }
       } else {
         alert('변경 비밀번호가 맞지않습니다.');
