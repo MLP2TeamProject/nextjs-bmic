@@ -5,6 +5,7 @@ import Router, { useRouter } from 'next/router';
 
 const Bidding = (props) => {
   const router = useRouter();
+  //useNavigate 대신에
   const { product_id } = router.query;
   const email = 'c@c.c';
 
@@ -50,6 +51,7 @@ const Bidding = (props) => {
       const response = await axios.post('/api/products/biddingUpdate', formData);
       if (response.data.status === 200) {
         window.alert(response.data.message);
+        //여기 alert은 수정해야될듯..
         setUploadImage(response.data.data.file_name);
         setBookTitle(response.data.data.title);
         setBookIsbn(response.data.data.isbn);
@@ -66,7 +68,6 @@ const Bidding = (props) => {
     <div className="container-fluid py-5">
       <div className="container py-5">
         <form method="post" id="form" encType="multipart/form-data">
-          {/* 여기 action="/upload" 지움 */}
           <div className="row g-5">
             <div className="col-md-12 col-lg-6 col-xl-7">
               <div className="row">
@@ -125,7 +126,6 @@ const Bidding = (props) => {
                 <label className="form-label my-3">
                   품질등급 <sup>*</sup>
                 </label>
-
                 <select
                   className="form-select"
                   aria-label="Default select example"
@@ -140,15 +140,6 @@ const Bidding = (props) => {
                   <option value="3">하</option>
                 </select>
               </div>
-
-              {/* <form
-                id="form"
-                // action="/upload"
-                //액션 업로드로 해줌
-                // method="post"
-                encType="multipart/form-data"
-              > */}
-              {/* 위에 같이 보내서 써도 되나? */}
               <div className="form-item">
                 <label className="form-label my-3">
                   사진첨부<sup>*</sup>
@@ -165,31 +156,13 @@ const Bidding = (props) => {
                     type="button"
                     value="업로드"
                     // onClick={upload}
-                    // onClick={insertBidding}
+                    onClick={insertBidding}
+                    //이부분..!!
                   />
-                  {/* <input
-                      name="file1"
-                      // 여기 추가
-                      type="file"
-                      className="form-control"
-                      id="formFileMultiple"
-                      multiple
-                    />
-                    <label
-                      htmlFor="formFileMultiple"
-                      className="form-label"
-                    ></label> */}
                 </div>
                 {uploadImage ? <img src={`http://localhost:8000/upload/${uploadImage}`} /> : ''}
               </div>
-              {/* </form> */}
               <br />
-
-              {/* {uploadImage ? (
-                <img src={`http://localhost:8000/upload/${uploadImage}`} />
-              ) : (
-                ""
-              )} */}
               <div className="form-item">
                 <label className="form-label my-3">
                   상세내용(선택사항)<sup></sup>
@@ -234,10 +207,10 @@ const Bidding = (props) => {
                           ) : (
                             ''
                           )}
+                          {/* { uploadImage ? <img src={`http://localhost:8000/upload/${uploadImage}`} style={{width:'100px'}} /> : ''} */}
                         </div>
                       </td>
                       <td className="py-5">{bookIsbn}</td>
-                      <td className="py-5">{bookTitle}</td>
                       <td className="py-5"></td>
                       <td className="py-5"></td>
                       {/* 이쪽 td는 전부 책 검색하고 나서 선택한 결과가 들어갔으면 좋겠음..되려나? */}
@@ -271,6 +244,7 @@ const Bidding = (props) => {
                       value={isChecked}
                       onChange={() => setIsChecked(!isChecked)}
                     />
+
                     <label className="form-check-label" htmlFor="isChecked">
                       최종 입찰하시겠습니까?
                     </label>
@@ -302,7 +276,7 @@ const Bidding = (props) => {
                 <button
                   className="btn_3"
                   type="button"
-                  onClick={() => Router.push(`/detail/${product_id}`)} //백택사용
+                  onClick={() => Router.push(`/detail/${product_id}`)}
                 >
                   취소하기
                 </button>

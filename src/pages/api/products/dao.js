@@ -4,16 +4,13 @@ const sql = {
   detail: 'select * from product where product_id = ?', //read
   detail_auction: 'select * from auction where product_id = ?', //detail 안에서 불러오려고
   update: 'update product set master_price =?, content = ? where product_id = ?', //update
-  // bidding:
-  //   "insert into product (title, author, isbn, auction_price, picture, product_status, createAt) values (?,?,?,?,?,?,?)",
-  //create
   insertAuction:
     'INSERT INTO auction (product_id, email, auction_price, picture, product_status) VALUES (?, ?, ?, ?, ?)',
+  checkBookTitle: 'SELECT title, isbn FROM product WHERE product_id = ?',
 };
 
 const productDAO = {
   detail: async (item, callback) => {
-    //item 매개변수로 조회하고자 하는 상품의 정보가 담긴 객체를 받음
     let conn = null;
     try {
       console.log('dao detail', item.product_id);
@@ -22,7 +19,6 @@ const productDAO = {
       //바인딩할 변수가 필요 sql 쿼리에서 사용하는 ?자리를 채워놓음
       // callback({ status: 200, message: "ok", data: Array.isArray(resp) ? resp[0] : resp })
       if (resp !== null && resp.length > 0) {
-      
         const [auction_resp] = await conn.query(sql.detail_auction, [item.product_id]);
         resp[0]['auctions'] = auction_resp; //원래 상품 정보에 경매 정보 추가
         console.log(resp);
@@ -68,12 +64,20 @@ const productDAO = {
         dataObj.auctionPrice,
         file_name,
         dataObj.quality,
-
-        //product_status가 quality가 된거고
       ]);
       if (result) {
-        console.log('5');
-        callback({ status: 200, message: '입찰성공', data: file_name });
+        const [bookInfo] = await conn.query(sql.checkBookTitle, [dataObj.product_id]);
+        console.log('5', bookInfo);
+        callback({
+          status: 200,
+          message: '입찰성공',
+          data: {
+            file_name: file_name,
+            auction_price: dataObj.auctionPrice,
+            title: bookInfo[0].title,
+            isbn: bookInfo[0].isbn,
+          },
+        });
       }
     } catch (e) {
       console.log(e);
