@@ -72,35 +72,6 @@ const Bidding = (props) => {
             <div className="col-md-12 col-lg-6 col-xl-7">
               <div className="row">
                 <div className="col-md-12 col-lg-6">
-                  <div className="form-item w-100">
-                    <label className="form-label my-3">
-                      제목, 저자, ISBN<sup>*</sup>
-                    </label>
-                    <div className="input-group mb-3">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="제목, 저자, ISBN"
-                        aria-label="Recipient's username"
-                        aria-describedby="button-addon2"
-                        name="isbn"
-                        id="isbn"
-                        value={data.isbn}
-                        onClick={changeData}
-                        // 여기서 api 가져오는게 필요해서...
-                      />
-                      <button
-                        className="btn btn-outline-secondary"
-                        type="button"
-                        id="button-addon2"
-                        // onClick={changeData}
-                      >
-                        검색
-                      </button>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-12 col-lg-6">
                   <div className="form-item w-100"></div>
                 </div>
               </div>

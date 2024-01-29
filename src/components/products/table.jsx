@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 //auctionDatas라는 prop으로 입찰 데이터
 const Table = (props) => {
