@@ -37,22 +37,111 @@ const Timer = () => {
 
   return (
     <div>
-      <div id="timer">
-        <div>
+      <div
+        id="timer"
+        style={{
+          fontSize: '3em',
+          fontWeight: 100,
+          color: 'white', // 'white'는 문자열이어야 합니다.
+          padding: '10px', // padding 값도 문자열로 설정하세요.
+          width: '700px', // width 값도 문자열로 설정하세요.
+        }}
+      >
+        <div
+          style={{
+            display: 'inline-block',
+            minWidth: '30px',
+            padding: '10px',
+            background: 'lightgray',
+            borderRadius: '10px',
+            border: '2px solid lightgray',
+            margin: '10px',
+          }}
+        >
           {timeLeft.days}
-          <span>Days</span>
+          <span
+            style={{
+              color: '#ffffff',
+              display: 'block',
+              marginTop: '10px',
+              fontSize: '0.35em',
+              fontWeight: 100,
+            }}
+          >
+            Days
+          </span>
         </div>
-        <div>
+        <div
+          style={{
+            display: 'inline-block',
+            minWidth: '30px',
+            padding: '10px',
+            background: 'lightgray',
+            borderRadius: '10px',
+            border: '2px solid lightgray',
+            margin: '10px',
+          }}
+        >
           {timeLeft.hours}
-          <span>Hours</span>
+          <span
+            style={{
+              color: '#ffffff',
+              display: 'block',
+              marginTop: '10px',
+              fontSize: '0.35em',
+              fontWeight: 100,
+            }}
+          >
+            Hours
+          </span>
         </div>
-        <div>
+        <div
+          style={{
+            display: 'inline-block',
+            minWidth: '30px',
+            padding: '10px',
+            background: 'lightgray',
+            borderRadius: '10px',
+            border: '2px solid lightgray',
+            margin: '10px',
+          }}
+        >
           {timeLeft.minutes}
-          <span>Minutes</span>
+          <span
+            style={{
+              color: '#ffffff',
+              display: 'block',
+              marginTop: '10px',
+              fontSize: '0.35em',
+              fontWeight: 100,
+            }}
+          >
+            Minutes
+          </span>
         </div>
-        <div>
+        <div
+          style={{
+            display: 'inline-block',
+            minWidth: '30px',
+            padding: '10px',
+            background: 'lightgray',
+            borderRadius: '10px',
+            border: '2px solid lightgray',
+            margin: '10px',
+          }}
+        >
           {timeLeft.seconds}
-          <span>Seconds</span>
+          <span
+            style={{
+              color: '#ffffff',
+              display: 'block',
+              marginTop: '10px',
+              fontSize: '0.35em',
+              fontWeight: 100,
+            }}
+          >
+            Seconds
+          </span>
         </div>
       </div>
     </div>

@@ -51,29 +51,63 @@ const productDAO = {
     }
   },
 
-  bidding: async (data, file_name, callback) => {
+  //   bidding: async (data, file_name, callback) => {
+  //     let conn = null;
+  //     try {
+  //       const dataObj = JSON.parse(data);
+  //       console.log('3', dataObj);
+  //       console.log('4', file_name);
+  //       conn = await getPool().getConnection();
+  //       const [result] = await conn.query(sql.insertAuction, [
+  //         dataObj.product_id,
+  //         dataObj.email,
+  //         dataObj.auctionPrice,
+  //         file_name,
+  //         dataObj.quality,
+  //       ]);
+  //       if (result) {
+  //         const [bookInfo] = await conn.query(sql.checkBookTitle, [dataObj.product_id]);
+  //         console.log('5', bookInfo);
+  //         callback({
+  //           status: 200,
+  //           message: '입찰성공',
+  //           data: {
+  //             file_name: file_name,
+  //             auction_price: dataObj.auctionPrice,
+  //             title: bookInfo[0].title,
+  //             isbn: bookInfo[0].isbn,
+  //           },
+  //         });
+  //       }
+  //     } catch (e) {
+  //       console.log(e);
+  //       return { status: 500, message: '입찰실패', error: e };
+  //     } finally {
+  //       if (conn !== null) conn.release();
+  //     }
+  //   },
+  // };
+  bidding: async (data, callback) => {
     let conn = null;
     try {
-      const dataObj = JSON.parse(data);
-      console.log('3', dataObj);
-      console.log('4', file_name);
+      console.log('1', data);
       conn = await getPool().getConnection();
       const [result] = await conn.query(sql.insertAuction, [
-        dataObj.product_id,
-        dataObj.email,
-        dataObj.auctionPrice,
-        file_name,
-        dataObj.quality,
+        data.auctionInfo.product_id,
+        data.auctionInfo.email,
+        data.auctionInfo.auctionPrice,
+        data.picture,
+        data.auctionInfo.quality,
       ]);
       if (result) {
-        const [bookInfo] = await conn.query(sql.checkBookTitle, [dataObj.product_id]);
+        const [bookInfo] = await conn.query(sql.checkBookTitle, [data.auctionInfo.product_id]);
         console.log('5', bookInfo);
         callback({
           status: 200,
           message: '입찰성공',
           data: {
-            file_name: file_name,
-            auction_price: dataObj.auctionPrice,
+            file_name: data.picture,
+            auction_price: data.auctionInfo.auctionPrice,
             title: bookInfo[0].title,
             isbn: bookInfo[0].isbn,
           },

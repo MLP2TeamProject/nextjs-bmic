@@ -48,7 +48,7 @@ const Bidding = (props) => {
 
       if (!formData) return;
 
-      const response = await axios.post('/api/products/biddingUpdate', formData);
+      const response = await axios.post('/api/products/biddingUpload', formData);
       if (response.data.status === 200) {
         window.alert(response.data.message);
         //여기 alert은 수정해야될듯..
@@ -123,15 +123,15 @@ const Bidding = (props) => {
                     onChange={(e) => setTitle(e.target.value)}
                   />
                   <input type="file" name="file1" onChange={(e) => setFile(e.target.files[0])} />
-                  <input
+                  {/* <input
                     type="button"
                     value="업로드"
                     // onClick={upload}
                     onClick={insertBidding}
                     //이부분..!!
-                  />
+                  /> */}
                 </div>
-                {uploadImage ? <img src={`http://localhost:8000/upload/${uploadImage}`} /> : ''}
+                {/* {uploadImage ? <img src={`http://localhost:8000/upload/${uploadImage}`} /> : ''} */}
               </div>
               <br />
               <div className="form-item">

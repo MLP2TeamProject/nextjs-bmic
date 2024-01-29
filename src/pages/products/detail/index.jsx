@@ -41,7 +41,8 @@ const Detail = () => {
           <div className="row s_product_inner justify-content-between">
             <div className="col-lg-7 col-xl-7">
               <div className="product_slider_img">
-                <img src="/images/book_image1.jpg" alt="book image" />
+                <img src="..." className="img-fluid" alt="book-image" />
+                {/* <img src="/images/book_image1.jpg" alt="book image" /> */}
                 {/* 여기서 api에서 받아온 사진이 올라갔으면 좋겠음.. */}
               </div>
             </div>
@@ -100,26 +101,17 @@ const Detail = () => {
       <section className="confirmation_part padding_top">
         <div className="container">
           <div className="row">
-            <div className="col-lg-12">
-              <div className="confirmation_tittle">
-                <span>입찰 현황을 확인하세요</span>
-              </div>
+            {/* <div className="col-lg-12"> */}
+            <div className="confirmation_tittle">
+              <span>입찰 현황을 확인하세요</span>
             </div>
-            <div>
-              <Table auctions={product.auctions} />
-            </div>
-            <div className="d-grid gap-2 d-md-flex justify-content-md-end">
-              <button className="btn btn-warning" type="button">
-                수정
-              </button>
-              {/* 여기 onClick하면 상품 구매하기 페이지로가야됨(준영님) 
-                이 부분이 작성자 권한이 있을 때만 수정이 가능하게끔 해야함 */}
-            </div>
-            <div className="col-lg-4 col-lx-4"></div>
-            <div className="col-lg-4 col-lx-4"></div>
-            <div className="row">
-              <div className="col-lg-12"></div>
-            </div>
+          </div>
+          <div>
+            <Table auctions={product.auctions} />
+          </div>
+
+          <div className="row">
+            <div className="col-lg-12"></div>
           </div>
         </div>
       </section>
