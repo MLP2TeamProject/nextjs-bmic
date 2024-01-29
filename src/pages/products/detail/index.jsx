@@ -1,7 +1,6 @@
 //여기 페이지에서 입찰하기 클릭하면 bidding
 import axios from 'axios';
 import React, { useCallback, useState, useEffect } from 'react';
-
 import Timer from '../../../components/products/timer';
 import Table from '../../../components/products/table';
 import { useRouter } from 'next/router';
@@ -14,7 +13,7 @@ const Detail = () => {
     email: '',
     picture: '',
     master_price: '',
-    auctuon_id: '',
+    auction_id: '',
     endtime: '',
     auction_status: '',
     isbn: '',
@@ -24,6 +23,10 @@ const Detail = () => {
     auctions: [],
     // 여기 Table의 auctions
   });
+
+  // const goToProductDetail = (productId) => {
+  //   router.push(`/products/detail/${productId}`);
+
   const getDetail = async () => {
     console.log('1111', product_id);
     const resp = await axios.get(`/api/products/readDetail?id=${product_id}`);
@@ -42,7 +45,6 @@ const Detail = () => {
             <div className="col-lg-7 col-xl-7">
               <div className="product_slider_img">
                 <img src="..." className="img-fluid" alt="book-image" />
-                {/* <img src="/images/book_image1.jpg" alt="book image" /> */}
                 {/* 여기서 api에서 받아온 사진이 올라갔으면 좋겠음.. */}
               </div>
             </div>
@@ -101,7 +103,6 @@ const Detail = () => {
       <section className="confirmation_part padding_top">
         <div className="container">
           <div className="row">
-            {/* <div className="col-lg-12"> */}
             <div className="confirmation_tittle">
               <span>입찰 현황을 확인하세요</span>
             </div>
@@ -109,7 +110,6 @@ const Detail = () => {
           <div>
             <Table auctions={product.auctions} />
           </div>
-
           <div className="row">
             <div className="col-lg-12"></div>
           </div>

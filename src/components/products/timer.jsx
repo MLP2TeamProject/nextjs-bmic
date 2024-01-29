@@ -1,7 +1,5 @@
 import { useState, useEffect } from 'react';
 
-//assets => css => all.css 에 css 붙여놓음
-
 const Timer = () => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -10,8 +8,9 @@ const Timer = () => {
     seconds: 0,
   });
   useEffect(() => {
-    const futureDate = new Date('2024/02/02 00:00:00').getTime();
+    const futureDate = new Date('2024/02/08 00:00:00').getTime();
     //사용자에게 선택을 주면 이 부분을 바꿔야 함
+    //지금 생각은 buy 페이지에서 7일, 14일, 이렇게 선택 옵션을 줄 수 있게?
 
     const updateTimer = () => {
       const now = new Date().getTime();
@@ -42,9 +41,9 @@ const Timer = () => {
         style={{
           fontSize: '3em',
           fontWeight: 100,
-          color: 'white', // 'white'는 문자열이어야 합니다.
-          padding: '10px', // padding 값도 문자열로 설정하세요.
-          width: '700px', // width 값도 문자열로 설정하세요.
+          color: 'white',
+          padding: '10px',
+          width: '700px',
         }}
       >
         <div
