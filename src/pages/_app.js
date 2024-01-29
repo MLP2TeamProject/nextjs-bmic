@@ -13,6 +13,9 @@ import '../assets/css/magnific-popup.css';
 import '../assets/css/slick.css';
 import '../assets/css/style.css';
 
+//board css.. 
+import '../components/board/board.css'
+
 export default function App({ Component, pageProps }) {
   return (
     <>

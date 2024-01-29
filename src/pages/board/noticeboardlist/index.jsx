@@ -101,7 +101,7 @@ const NoticeBoardList = () => {
 													<tr>
                                                         {/* 이 부분에 삼항연산자 넣어서 버튼 나타내기 */}
 														<td colSpan={5}>
-															<Link href={"/board/noticeboardinsert"}>
+															<Link href={"/board/noticeinsert"}>
 																<button className="btn btn-primary btn-sm float-right">글쓰기</button>
 															</Link>
 														</td>

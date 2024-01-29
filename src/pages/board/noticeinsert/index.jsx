@@ -1,16 +1,19 @@
+// board/noticeinsert/index.js
 // 공지 페이지 글을 등록하는 페이지 -> 관리자만 사용 가능
 
 import axios from "axios";
 import React, { useCallback, useState, useEffect } from "react";
-
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+
+//css import
+// import 
 
 const NoticeBoardInsert = () => {
     const router = useRouter();
 
     // 유효입력데이터
-    const [noticeData, setNoticeData] = useState({ id:'', title: '', content: '' });
+    const [noticeData, setNoticeData] = useState({ id:'', title: '', content: '', email:'' });
 
     const changeNoticeData = useCallback((e) => {
         setNoticeData((noticeData) => ({ ...noticeData, [e.target.name]: e.target.value }))
@@ -20,11 +23,12 @@ const NoticeBoardInsert = () => {
     const noticeInsert = useCallback(async (e) => {
         e.preventDefault()
         // post 방식은 url 요청 후 data를 전송해야한다. ***
+        
         const resp = await axios.post('/api/boards/noticeinsert', noticeData)
         if (resp.data.status === 500) window.alert(resp.data.message)
         else {
             // 화면 자동 목록으로 
-            router('/board/noticelist')
+            router.push('/board/noticeboardlist')
         }
     }, [noticeData, router])
 
@@ -41,12 +45,12 @@ const NoticeBoardInsert = () => {
 								<h2>고객센터</h2>
 							</div>
 							<div>
-								<Link to={"/board/noticelist/1"}>
-									<p className="text-dark">공지사항</p>
-								</Link>
-								<Link to={"/board/faqlist"}>
-									<p className="text-muted">FAQ</p>
-								</Link>
+                            <Link href={"/board/noticeboardlist/"}>
+								<p className="text-muted">공지사항</p>
+							</Link>
+							<Link href={"/board/faqboardlist"}>
+								<p className="text-dark">FAQ</p>
+							</Link>
                                 <hr/>
                                 
 							</div>
@@ -61,6 +65,14 @@ const NoticeBoardInsert = () => {
 										<div className="col-lg-12">
 											<table className="table table">
 												<tbody className="col-12">
+                                                    <tr className="col-sm-12">
+                                                        <td className="col-sm-2">email</td>
+                                                        <td>
+                                                            <textarea cols="100" rows="1" name="email" className="bmic-textarea"
+                                                                placeholder="admin@com" value={noticeData.email} onChange={changeNoticeData}></textarea>
+														
+                                                        </td>
+                                                    </tr>
 													<tr className="col-sm-12">
 														<td className="col-sm-2">제목</td>
 														<td>
@@ -77,12 +89,13 @@ const NoticeBoardInsert = () => {
                                                                 placeholder="내용을 입력해주세요." value={noticeData.content} onChange={changeNoticeData}></textarea>
 														</td>
 													</tr>
+                                                    
 												</tbody>
 											</table>
 											<div className="container">
 												<div className="col-auto"></div>
                                                 <button type="button" className="btn btn-primary btn-sm float-right bnt-space" onClick={noticeInsert}>저장</button>
-                                                <button type="button" className="btn btn-danger btn-sm float-right bnt-space" onClick={()=>router('/board/noticelist/1')} >취소</button>
+                                                <button type="button" className="btn btn-danger btn-sm float-right bnt-space" onClick={()=>router.push('/board/noticeboardlist')} >취소</button>
 												
 											</div>
 										</div>

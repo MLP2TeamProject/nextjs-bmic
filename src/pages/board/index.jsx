@@ -1,12 +1,12 @@
 import Link from 'next/link';
 
+// import noticeboardlist from
 
-const BoardMain = () => {
-    return (
-        <div>
-            {/* <h2>test - Board Main</h2> */}
-            
-        </div>
-    );
+const Board = () => {
+  return (
+    <section>
+        
+    </section>
+  );
 };
-export default BoardMain;
+export default Board;

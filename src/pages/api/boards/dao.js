@@ -4,7 +4,7 @@ import { getPool } from '../common/pool.js';
 const sql = {
     // 고객센터 - 공지에 관련된 sql
     noticeBoardList: 'SELECT * FROM notice_board ORDER BY notice_id DESC',
-    noticeInsert: 'INSERT INTO notice_board (title, content) VALUES (?,?)',
+    noticeInsert: 'INSERT INTO notice_board (title, content, email ) VALUES (?,?,?)',
     noticeBoard: 'SELECT * FROM notice_board WHERE notice_id = ?',
     noticeDelete: 'DELETE FROM notice_board WHERE notice_id = ?',
     noticeUpdate: 'UPDATE notice_board SET title = ?, content = ? WHERE notice_id = ?',
@@ -94,7 +94,7 @@ const boardDAO = {
         try {
             conn = await getPool().getConnection()
 
-            const [resp] = await conn.query(sql.noticeInsert, [item.title, item.content])
+            const [resp] = await conn.query(sql.noticeInsert, [item.title, item.content, item.email])
 
             console.log('noticeinsert_ss')
             callback({ status: 200, message: 'OK', data: resp })
